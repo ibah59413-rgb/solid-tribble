@@ -1,7 +1,80 @@
-# solid-tribbleSet up a development build for my Expo project and run the EAS build on my own machine.
+# Solid Tribble Backend
 
-Run `npx expo install expo-dev-client`. Check that eas-cli is installed and that I am logged in. Create an eas.json with a development profile if the project has none. For an iOS Simulator build, set `ios.simulator` to true on that profile first. Then stop and ask me: "Everything is installed. Do you want to build now?" Wait for my answer. When I say yes, run `eas build --platform <platform> --profile development --local` for the platform I name.
+This repository now includes a default backend starter for the app.
 
-Install the resulting .apk or .app archive on my emulator or simulator, then start the development server with `npx expo start`. Match the package manager this project already uses, and report what you ran.
+## Stack
+- Node.js
+- Express
+- PostgreSQL support with optional in-memory fallback
+- Environment-based configuration
 
-For the introduction to development builds, see https://docs.expo.dev/develop/development-builds/introduction/?buildenv=eas-cli-local.
+## Prerequisites
+- Node.js 18+
+- npm
+
+## Installation
+
+```bash
+npm install
+```
+
+## Environment setup
+
+Copy the example env file and update the values:
+
+```bash
+cp .env.example .env
+```
+
+## Start the server
+
+Development mode:
+
+```bash
+npm run dev
+```
+
+Production mode:
+
+```bash
+npm start
+```
+
+## Available endpoints
+
+### Health
+```http
+GET /api/health
+```
+
+### Users
+```http
+GET /api/users
+GET /api/users/:id
+POST /api/users
+```
+
+Example POST body:
+
+```json
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com"
+}
+```
+
+## Database configuration
+
+If `DATABASE_URL` is set in your `.env`, the app will try to connect to PostgreSQL.
+If it is not set, the app continues to run with an in-memory user store so you can start developing immediately.
+
+## Example `.env`
+
+```env
+PORT=4000
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/app_db
+```
+
+## Notes
+
+This starter is intentionally simple and can be extended with authentication, database models, validation, and production-ready APIs as your app grows.
