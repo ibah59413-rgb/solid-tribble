@@ -1,16 +1,23 @@
 {
-  "name": "solid-tribble-backend",
+  "name": "banna-ai-backend",
   "version": "1.0.0",
-  "description": "Default Express backend for the solid-tribble app",
+  "description": "Banna AI chat backend with authentication and PostgreSQL",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "db:migrate": "node src/scripts/migrate.js"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.12.0"
   }
 }
